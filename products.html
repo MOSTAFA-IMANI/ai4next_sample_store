@@ -244,6 +244,123 @@
             opacity: 1;
         }
 
+        /* Floating Chat Button */
+        .chat-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--shadow-lg);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .chat-button:hover {
+            transform: scale(1.1);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .chat-button svg {
+            width: 28px;
+            height: 28px;
+            fill: white;
+        }
+
+        /* Chat Modal */
+        .chat-modal {
+            display: none;
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            width: 380px;
+            height: 600px;
+            background: var(--bg-white);
+            border-radius: 16px;
+            box-shadow: var(--shadow-xl);
+            z-index: 1001;
+            overflow: hidden;
+            animation: slideUp 0.3s ease;
+        }
+
+        .chat-modal.active {
+            display: block;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .chat-modal-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-modal-header h3 {
+            margin: 0;
+            font-size: 1.125rem;
+            font-weight: 600;
+        }
+
+        .chat-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background 0.3s ease;
+        }
+
+        .chat-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .chat-iframe {
+            width: 100%;
+            height: calc(100% - 60px);
+            border: none;
+        }
+
+        .chat-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+        }
+
+        .chat-overlay.active {
+            display: block;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .products-grid {
@@ -261,6 +378,21 @@
 
             .logo-img {
                 height: 32px;
+            }
+
+            .chat-modal {
+                width: calc(100% - 40px);
+                height: 70vh;
+                bottom: 90px;
+                right: 20px;
+                left: 20px;
+            }
+
+            .chat-button {
+                width: 56px;
+                height: 56px;
+                bottom: 15px;
+                right: 15px;
             }
         }
 
@@ -442,6 +574,24 @@
         </div>
     </footer>
 
+    <!-- Floating Chat Button -->
+    <button class="chat-button" id="chatButton" aria-label="Open support chat">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 2H4C2.9 2 2 2.9 2 4V22L6 18H20C21.1 18 22 17.1 22 16V4C22 2.9 21.1 2 20 2ZM20 16H6L4 18V4H20V16Z" fill="currentColor"/>
+            <path d="M7 9H17V11H7V9ZM7 12H14V14H7V12Z" fill="currentColor"/>
+        </svg>
+    </button>
+
+    <!-- Chat Modal -->
+    <div class="chat-overlay" id="chatOverlay"></div>
+    <div class="chat-modal" id="chatModal">
+        <div class="chat-modal-header">
+            <h3>Support Chat</h3>
+            <button class="chat-close" id="chatClose" aria-label="Close chat">×</button>
+        </div>
+        <iframe class="chat-iframe" src="https://n8n.rymon-afzar.ir/webhook/0790615b-1266-48f1-81c2-643c6d361f7d/chat" title="Support Chat"></iframe>
+    </div>
+
     <script>
         // Add to cart functionality
         document.querySelectorAll('.add-to-cart').forEach(button => {
@@ -456,6 +606,35 @@
                     this.style.background = 'linear-gradient(135deg, var(--primary-color), var(--secondary-color))';
                 }, 2000);
             });
+        });
+
+        // Chat modal functionality
+        const chatButton = document.getElementById('chatButton');
+        const chatModal = document.getElementById('chatModal');
+        const chatClose = document.getElementById('chatClose');
+        const chatOverlay = document.getElementById('chatOverlay');
+
+        function openChat() {
+            chatModal.classList.add('active');
+            chatOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeChat() {
+            chatModal.classList.remove('active');
+            chatOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        chatButton.addEventListener('click', openChat);
+        chatClose.addEventListener('click', closeChat);
+        chatOverlay.addEventListener('click', closeChat);
+
+        // Close on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && chatModal.classList.contains('active')) {
+                closeChat();
+            }
         });
     </script>
 </body>
