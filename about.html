@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - AI4Next</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary-color: #8b5cf6;
+            --accent-color: #ec4899;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --bg-light: #f9fafb;
+            --bg-white: #ffffff;
+            --border-color: #e5e7eb;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: var(--text-primary);
+            line-height: 1.6;
+            background: var(--bg-light);
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--bg-white);
+            box-shadow: var(--shadow-sm);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .logo-img {
+            height: 40px;
+            width: auto;
+            border-radius: 8px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .youtube-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .youtube-link:hover {
+            color: var(--primary-color);
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 4rem 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .page-header p {
+            color: var(--text-secondary);
+            font-size: 1.25rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .content-card {
+            background: var(--bg-white);
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+        }
+
+        .content-card h2 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .content-card p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .team-intro {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 3rem;
+            border-radius: 16px;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .team-intro h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .team-intro p {
+            font-size: 1.125rem;
+            opacity: 0.95;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .contact-info {
+            background: var(--bg-white);
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            margin-bottom: 3rem;
+        }
+
+        .contact-info h2 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: var(--text-primary);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .contact-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .contact-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .contact-details h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .contact-details p {
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-details a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .contact-details a:hover {
+            color: var(--primary-dark);
+        }
+
+        .youtube-cta {
+            background: linear-gradient(135deg, #ff0000, #cc0000);
+            color: white;
+            padding: 3rem;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .youtube-cta h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .youtube-cta p {
+            font-size: 1.125rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .youtube-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 2.5rem;
+            background: white;
+            color: #ff0000;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-lg);
+            font-size: 1.125rem;
+        }
+
+        .youtube-button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .youtube-button svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-primary);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        footer p {
+            opacity: 0.8;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links {
+            margin-top: 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.9;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .logo-img {
+                height: 32px;
+            }
+
+            .team-intro h2 {
+                font-size: 1.75rem;
+            }
+
+            .team-intro p {
+                font-size: 1rem;
+            }
+
+            .youtube-cta h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.htm" class="logo">
+                <img src="https://yt3.googleusercontent.com/RC1UUdkKYCvn3jk7w7rJGXNANk06XM5I_yUJbC5GaTTBsXDzY-Zfdn5_20L70A0UCJDphsFh=s160-c-k-c0x00ffffff-no-rj" alt="AI4Next Logo" class="logo-img">
+                <span>AI4Next</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.htm">Home</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="https://www.youtube.com/@ai4next?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="youtube-link">YouTube</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- About Section -->
+    <section class="about-section">
+        <div class="container">
+            <div class="page-header">
+                <h1>About AI4Next</h1>
+                <p>Empowering the future with cutting-edge technology and innovation</p>
+            </div>
+
+            <!-- Team Introduction -->
+            <div class="team-intro">
+                <h2>Welcome to AI4NEXT 🚀</h2>
+                <p>
+                    Your guide to mastering the future with AI. We show you how AI is revolutionizing creativity, business, and daily life, and how you can use it to get ahead.
+                </p>
+                <p style="margin-top: 1.5rem;">
+                    <strong>💡 Here's what you'll find:</strong>
+                </p>
+                <p style="margin-top: 1rem;">
+                    ✅ <strong>Latest AI Tools:</strong> Reviews of ChatGPT, Gemini, Claude, Midjourney, Sora, Veo & more.<br>
+                    ✅ <strong>Practical AI Tutorials:</strong> Easy, step-by-step guides for beginners.<br>
+                    ✅ <strong>AI Productivity & Creation:</strong> Automate work, create faster, think smarter.<br>
+                    ✅ <strong>Tool Comparisons:</strong> Find the best AI for your specific goals.<br>
+                    ✅ <strong>Future Tech Insights:</strong> Discover what's next in AI innovation.
+                </p>
+                <p style="margin-top: 1.5rem;">
+                    Whether you're a creator, entrepreneur, student, or tech enthusiast, this channel will help you understand, apply, and grow with AI. No hype — just real, actionable knowledge and inspiration for the next generation.
+                </p>
+            </div>
+
+            <!-- Content Grid -->
+            <div class="content-grid">
+                <div class="content-card">
+                    <h2>Our Mission</h2>
+                    <p>
+                        To democratize access to advanced technology and empower individuals and businesses with innovative solutions that drive progress and enhance daily life.
+                    </p>
+                    <p>
+                        We strive to bridge the gap between complex technology and everyday users, making sophisticated tools accessible and understandable for everyone.
+                    </p>
+                </div>
+
+                <div class="content-card">
+                    <h2>Our Vision</h2>
+                    <p>
+                        To become a leading platform for technology education, product discovery, and innovation, inspiring the next generation of tech enthusiasts and professionals.
+                    </p>
+                    <p>
+                        We envision a future where technology seamlessly integrates into every aspect of life, making it more efficient, enjoyable, and meaningful.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="contact-info">
+                <h2>Contact Us</h2>
+                <div class="contact-item">
+                    <div class="contact-icon">📧</div>
+                    <div class="contact-details">
+                        <h3>Email</h3>
+                        <p>For inquiries, support, or partnerships</p>
+                        <a href="mailto:ai4next@gmail.com">ai4next@gmail.com</a>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">🎥</div>
+                    <div class="contact-details">
+                        <h3>YouTube Channel</h3>
+                        <p>Subscribe to our channel for the latest tech reviews, tutorials, and updates</p>
+                        <a href="https://www.youtube.com/@ai4next?sub_confirmation=1" target="_blank" rel="noopener noreferrer">Subscribe to Our YouTube Channel</a>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">🌐</div>
+                    <div class="contact-details">
+                        <h3>Follow Us</h3>
+                        <p>Stay connected with us on social media</p>
+                        <a href="https://www.youtube.com/@ai4next?sub_confirmation=1" target="_blank" rel="noopener noreferrer">Subscribe on YouTube</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- YouTube CTA -->
+            <div class="youtube-cta">
+                <h2>🎬 Subscribe to Our YouTube Channel</h2>
+                <p>
+                    Join our growing community! Get the latest AI tools reviews, practical tutorials, productivity tips, and future tech insights. No hype — just real, actionable knowledge.
+                </p>
+                <a href="https://www.youtube.com/@ai4next?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="youtube-button">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                    </svg>
+                    Subscribe to AI4NEXT
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 AI4Next. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="https://www.youtube.com/@ai4next?sub_confirmation=1" target="_blank" rel="noopener noreferrer">Subscribe to Our YouTube Channel</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
+
